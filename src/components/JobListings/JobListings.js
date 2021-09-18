@@ -17,11 +17,21 @@ function JobListings() {
     });
   };
 
+  const removeFilter = function (filterToRemove) {
+    setFilters((filters) => {
+      const updatedFilters = filters.filter(
+        (filter) => filter !== filterToRemove
+      );
+
+      return updatedFilters;
+    });
+  };
+
   return (
     <div className={styles.jobListings}>
       {filters.length > 0 && (
         <div className={styles.filters}>
-          <Filters filters={filters} />
+          <Filters filters={filters} removeFilter={removeFilter} />
         </div>
       )}
 
