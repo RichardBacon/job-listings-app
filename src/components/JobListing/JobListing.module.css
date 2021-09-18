@@ -92,9 +92,16 @@
 
 .position {
   color: hsl(180, 14%, 20%);
+  cursor: pointer;
   font-family: 'Lato', sans-serif;
   font-size: 1.6rem;
   font-weight: 700;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .position:hover {
+    color: hsl(180, 29%, 50%);
+  }
 }
 
 @media (min-width: 900px) {
@@ -150,6 +157,7 @@
 .filter {
   background-color: hsl(180, 31%, 95%);
   color: hsl(180, 29%, 50%);
+  cursor: pointer;
   font-family: 'Lato', sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
