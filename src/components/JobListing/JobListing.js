@@ -15,7 +15,11 @@ function JobListing({
   tools,
 }) {
   return (
-    <div className={styles.jobListing}>
+    <div
+      className={`${styles.jobListing} ${
+        featured && styles.jobListingFeatured
+      }`}
+    >
       <img className={styles.logo} src={logo} alt={company} />
       <header className={styles.header}>
         <h2 className={styles.company}>
