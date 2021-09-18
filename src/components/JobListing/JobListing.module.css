@@ -4,6 +4,7 @@
   background-color: hsl(0, 0%, 100%);
   border-left: 5px solid hsl(180, 29%, 50%);
   border-radius: 5px;
+  box-shadow: 10px 10px 10px hsl(180, 29%, 90%);
   padding: 3rem 2rem;
   position: relative;
 }
