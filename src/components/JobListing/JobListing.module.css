@@ -156,10 +156,18 @@
 
 .filter {
   background-color: hsl(180, 31%, 95%);
+  border-radius: 5px;
   color: hsl(180, 29%, 50%);
   cursor: pointer;
   font-family: 'Lato', sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   padding: 0.8rem 1rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .filter:hover {
+    background-color: hsl(180, 29%, 50%);
+    color: hsl(180, 31%, 95%);
+  }
 }

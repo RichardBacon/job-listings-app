@@ -27,3 +27,9 @@
   cursor: pointer;
   padding: 1rem;
 }
+
+@media (hover: hover) and (pointer: fine) {
+  .iconRemove:hover {
+    background-color: hsl(180, 14%, 20%);
+  }
+}
