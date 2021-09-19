@@ -15,8 +15,8 @@ function JobListing({
   tools,
   addFilter,
 }) {
-  const handleFilterClick = (filter) => {
-    addFilter(filter);
+  const handleFilterClick = (key, value) => {
+    addFilter(key, value);
   };
 
   return (
@@ -43,20 +43,20 @@ function JobListing({
       <div className={styles.filtersSection}>
         <ul className={styles.filters}>
           <li
-            onClick={handleFilterClick.bind(null, role)}
+            onClick={handleFilterClick.bind(null, 'role', role)}
             className={styles.filter}
           >
             {role}
           </li>
           <li
-            onClick={handleFilterClick.bind(null, level)}
+            onClick={handleFilterClick.bind(null, 'level', level)}
             className={styles.filter}
           >
             {level}
           </li>
           {languages.map((language, index) => (
             <li
-              onClick={handleFilterClick.bind(null, language)}
+              onClick={handleFilterClick.bind(null, 'languages', language)}
               key={index}
               className={styles.filter}
             >
@@ -65,7 +65,7 @@ function JobListing({
           ))}
           {tools.map((tool, index) => (
             <li
-              onClick={handleFilterClick.bind(null, tool)}
+              onClick={handleFilterClick.bind(null, 'tools', tool)}
               key={index}
               className={styles.filter}
             >

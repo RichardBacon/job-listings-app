@@ -1,27 +1,48 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './JobListings.module.css';
 import data from '../../data/data.json';
 import Filters from '../Filters/Filters';
 import JobListing from '../JobListing/JobListing';
 
 function JobListings() {
-  const [filters, setFilters] = useState([]);
-  const [jobs] = useState(data);
+  const [filters, setFilters] = useState({
+    role: [],
+    level: [],
+    languages: [],
+    tools: [],
+  });
+  const [jobs, setJobs] = useState(data);
 
-  const addFilter = function (filter) {
+  useEffect(() => {
+    setJobs((jobs) => {
+      const updatedJobs = data.filter(
+        (job) =>
+          (filters.role.length === 0 || filters.role.includes(job.role)) &&
+          (filters.level.length === 0 || filters.level.includes(job.level)) &&
+          (filters.languages.length === 0 ||
+            filters.languages.every((r) => job.languages.includes(r))) &&
+          (filters.tools.length === 0 ||
+            filters.tools.every((r) => job.tools.includes(r)))
+      );
+
+      return updatedJobs;
+    });
+  }, [filters]);
+
+  const addFilter = function (key, value) {
     setFilters((filters) => {
-      const updatedFilters = [...filters];
-      updatedFilters.push(filter);
+      const updatedValue = [...filters[key]];
+      updatedValue.push(value);
+      const updatedFilters = { ...filters, [key]: updatedValue };
 
-      return [...new Set(updatedFilters)];
+      return updatedFilters;
     });
   };
 
-  const removeFilter = function (filterToRemove) {
+  const removeFilter = function (key, value) {
     setFilters((filters) => {
-      const updatedFilters = filters.filter(
-        (filter) => filter !== filterToRemove
-      );
+      const updatedValue = filters[key].filter((updated) => updated !== value);
+      const updatedFilters = { ...filters, [key]: updatedValue };
 
       return updatedFilters;
     });
@@ -29,7 +50,7 @@ function JobListings() {
 
   return (
     <div className={styles.jobListings}>
-      {filters.length > 0 && (
+      {Object.values(filters).some((value) => value.length > 0) && (
         <div className={styles.filters}>
           <Filters filters={filters} removeFilter={removeFilter} />
         </div>
